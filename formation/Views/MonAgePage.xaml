@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              x:Class="formation.Views.MonAgePage">
+    <ContentPage.Content>
+        <StackLayout Padding="50">
+            <Label Text="Ma date de naissance :"/>
+            <DatePicker Format="dd/MM/yyyy" Date="{Binding Birthday, Mode=TwoWay}" />
+            <Label Text="Dans 10 ans j'aurai"/>
+            <Label Text="{Binding TenYearLaters}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
