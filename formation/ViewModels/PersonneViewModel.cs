@@ -77,7 +77,9 @@ namespace formation.ViewModels
             {
                 year -= 1;
             }
+
             TenYearLaters = year+"";
+            //TenYearLaters = ""+( UneDate.Year - Birthday.Year - (UneDate.Month < Birthday.Month ? 1 : (UneDate.Month == Birthday.Month && UneDate.Day < Birthday.Day) ? 1 : 0));
         }
     }
 }
