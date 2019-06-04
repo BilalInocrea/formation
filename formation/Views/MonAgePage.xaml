@@ -6,8 +6,12 @@
         <StackLayout Padding="50">
             <Label Text="Ma date de naissance :"/>
             <DatePicker Format="dd/MM/yyyy" Date="{Binding Birthday, Mode=TwoWay}" />
-            <Label Text="Dans 10 ans j'aurai"/>
+            <Label Text="Dans 10 ans à partir d'aujourd'hui j'aurai"/>
             <Label Text="{Binding TenYearLaters}"/>
+            <Label Text="Le :"/>
+            <DatePicker Format="dd/MM/yyyy" Date="{Binding FuturBirthDay, Mode=TwoWay}" />
+            <Label Text="Vous aurez"/>
+            <Label Text="{Binding MonAgeDansXannee}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
