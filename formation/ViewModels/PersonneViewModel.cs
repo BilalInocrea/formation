@@ -15,7 +15,22 @@ namespace formation.ViewModels
             {
                 if (value == _birthday) return;
                 SetProperty(ref _birthday, value);
-                CalculeMonAge();
+                CalculeMonAgeA();
+            }
+        }
+
+        private DateTime _uneDate;
+        public DateTime UneDate
+        {
+            get
+            {
+                return _uneDate;
+            }
+            set
+            {
+                if (value == _uneDate) return;
+                SetProperty(ref _uneDate, value);
+                CalculeMonAgeA();
             }
         }
 
@@ -37,6 +52,7 @@ namespace formation.ViewModels
         {
             var Personne = new Personne();
             Birthday = Personne.Birthday;
+            UneDate = DateTime.Today;
         }
 
         private void CalculeMonAge()
@@ -47,6 +63,11 @@ namespace formation.ViewModels
             var age = today - annee;
             var date = Math.Round(age.TotalDays / 365)+10;
             TenYearLaters = date.ToString();
+        }
+
+        private void CalculeMonAgeA()
+        {
+            TenYearLaters = ""+( UneDate.Year - Birthday.Year - (UneDate.Month < Birthday.Month ? 1 : (UneDate.Month == Birthday.Month && UneDate.Day < Birthday.Day) ? 1 : 0));
         }
     }
 }

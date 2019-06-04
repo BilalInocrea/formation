@@ -8,6 +8,13 @@
             <DatePicker Format="dd/MM/yyyy" Date="{Binding Birthday, Mode=TwoWay}" />
             <Label Text="Dans 10 ans j'aurai"/>
             <Label Text="{Binding TenYearLaters}"/>
+            
+            
+            
+            <Label Text="A cette date :"/>
+            <DatePicker Format="dd/MM/yyyy" Date="{Binding UneDate, Mode=TwoWay}" />
+            <Label Text="j'aurai"/>
+            <Label Text="{Binding TenYearLaters}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
