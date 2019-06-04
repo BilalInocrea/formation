@@ -67,7 +67,17 @@ namespace formation.ViewModels
 
         private void CalculeMonAgeA()
         {
-            TenYearLaters = ""+( UneDate.Year - Birthday.Year - (UneDate.Month < Birthday.Month ? 1 : (UneDate.Month == Birthday.Month && UneDate.Day < Birthday.Day) ? 1 : 0));
+
+            var year = UneDate.Year - Birthday.Year;
+            if(UneDate.Month < Birthday.Month)
+            {
+                year -= 1;
+            }
+            else if(UneDate.Month == Birthday.Month && UneDate.Day < Birthday.Day)
+            {
+                year -= 1;
+            }
+            TenYearLaters = year+"";
         }
     }
 }
