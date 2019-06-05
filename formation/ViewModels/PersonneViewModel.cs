@@ -2,7 +2,7 @@
 using formation.Models;
 namespace formation.ViewModels
 {
-    public class PersonneViewModel:BaseViewModel
+    public class PersonneViewModel : BaseViewModel
     {
         private DateTime _birthday;
         public DateTime Birthday
@@ -15,8 +15,21 @@ namespace formation.ViewModels
             {
                 if (value == _birthday) return;
                 SetProperty(ref _birthday, value);
-                CalculeMonAge();
-                CalculeMonAgeDansLeFutur();
+                CalculeMonAgeA();
+            }
+        }
+
+        private DateTime _uneDate;
+        public DateTime UneDate
+        {
+            get
+            {
+                return _uneDate;
+            }
+            set
+            {
+                if (value == _uneDate) return;
+                SetProperty(ref _uneDate, value);
             }
         }
 
@@ -31,7 +44,6 @@ namespace formation.ViewModels
             {
                 if (value == _tenYearsLaters) return;
                 SetProperty(ref _tenYearsLaters, value);
-
             }
         }
 
@@ -39,86 +51,38 @@ namespace formation.ViewModels
         {
             var Personne = new Personne();
             Birthday = Personne.Birthday;
-            FuturBirthDay = Personne.Birthday;
+            UneDate = DateTime.Today;
         }
 
-        private void CalculeMonAge()
+        public void CalculeMonAge()
         {
             var annee = Birthday;
             var today = DateTime.Now;
             today.AddYears(10);
             var age = today - annee;
-            var date = Math.Round(age.TotalDays / 365)+10;
-            TenYearLaters = date.ToString() + " ans";
+            var date = Math.Round(age.TotalDays / 365) + 10;
+            TenYearLaters = date.ToString();
         }
-        private DateTime _futurBirthDay;
-        public DateTime FuturBirthDay
+        public void CalculeMonAgeA()
         {
-            get 
-            {
-                return _futurBirthDay;
-            }
-            set
-            {
-                if (value == _futurBirthDay) return;
-                SetProperty(ref _futurBirthDay, value);
-                CalculeMonAgeDansLeFutur();
-            }
-        }
-        private string _monAgeDansXannee;
-        public string MonAgeDansXannee
-        {
-            get
-            {
-                return _monAgeDansXannee;
-            }
-            set
-            {
-                if (value == _monAgeDansXannee) return;
-                SetProperty(ref _monAgeDansXannee, value);
-            }
-        }
-        public void CalculeMonAgeDansLeFutur()
-        {
-            TimeSpan diff1 = FuturBirthDay.Subtract(Birthday);
-            double AllDay = diff1.Days;
-            //double final = Math.Round(AllDay / 365);
-            double final = 0;
-            if (AllDay < 365)
-            {
-                final = 0;
-                MonAgeDansXannee = final + " ans";
-
-            }
-            if (AllDay >= 365)
-            {
-                final = Math.Round(AllDay / 365);
-                MonAgeDansXannee = final + " ans";
-            }
+            //Je prends la date année introduite que je soustrais a la date année de l'anniversaire je soustrait en premier la comparatison de la date mois introduite si c'est égal a 1 alors 
+            //TenYearLaters = ""+( UneDate.Year - Birthday.Year - (UneDate.Month < Birthday.Month ? 1 : (UneDate.Month == Birthday.Month && UneDate.Day < Birthday.Day) ? 1 : 0));
             /*
-            var anneeYear = FuturBirthDay.Year;
-            var annifYear = Birthday.Year;
-            var anneeMonth = FuturBirthDay.Month;
-            var annifMonth = Birthday.Month;
-            var anneeDay = FuturBirthDay.Day;
-            var annifDay = Birthday.Day;
-            var totalDay = (anneeDay - annifDay);
-            var totalMonth = (anneeMonth - annifMonth) * 30;
-            var totalYear = (anneeYear - annifYear) * 365;
-            double totalFial = (totalDay + totalMonth + totalYear);
+            if(Birthday != null || UneDate != null)
+            {
 
-            if(totalFial < 365)
-            {
-                totalFial = 0;
-                MonAgeDansXannee = Math.Round(totalFial) + " ans";
             }
-            if(totalFial >= 365 )
+            */           
+            var year = UneDate.Year - Birthday.Year;
+            if (UneDate.Month < Birthday.Month)
             {
-                MonAgeDansXannee = Math.Round(totalFial / 365) + " ans";
-            
+                year -= 1;
             }
-            */
+            else if (UneDate.Month == Birthday.Month && UneDate.Day < Birthday.Day)
+            {
+                year -= 1;
+            }
+            TenYearLaters = year + " ans";
         }
-
     }
 }

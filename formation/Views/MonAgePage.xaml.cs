@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-
 using Xamarin.Forms;
 using formation.ViewModels;
 
@@ -15,5 +14,15 @@ namespace formation.Views
             BindingContext = viewModel;
             InitializeComponent();
         }
+        void OnButtonClicked (object sender, EventArgs args)
+        {
+           
+            labResultat.IsVisible = true;
+            labDate.IsVisible = true;
+            result.IsVisible = true;
+            viewModel.CalculeMonAge();
+            viewModel.CalculeMonAgeA();
+        }
+
     }
 }

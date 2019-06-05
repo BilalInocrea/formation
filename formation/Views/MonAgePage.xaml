@@ -3,15 +3,17 @@
               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
               x:Class="formation.Views.MonAgePage">
     <ContentPage.Content>
-        <StackLayout Padding="50">
+        <StackLayout Padding="50" >
             <Label Text="Ma date de naissance :"/>
             <DatePicker Format="dd/MM/yyyy" Date="{Binding Birthday, Mode=TwoWay}" />
-            <Label Text="Dans 10 ans à partir d'aujourd'hui j'aurai"/>
-            <Label Text="{Binding TenYearLaters}"/>
-            <Label Text="Le :"/>
-            <DatePicker Format="dd/MM/yyyy" Date="{Binding FuturBirthDay, Mode=TwoWay}" />
-            <Label Text="Vous aurez"/>
-            <Label Text="{Binding MonAgeDansXannee}"/>
+            <Label x:Name="labDate" Text="Le :"/>
+            <DatePicker x:Name="DatePicker" Format="dd/MM/yyyy" Date="{Binding UneDate, Mode=TwoWay}"/>
+            <Label x:Name="labResultat" Text="Vous aurez" IsVisible="false"/>
+            <Label x:Name="result" Text="{Binding TenYearLaters}" IsVisible="false"/>
+            <Button Text="Cliquez pour calculer"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
+                Clicked="OnButtonClicked" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
